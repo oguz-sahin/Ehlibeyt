@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.firstapplication">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".Ehlibeyt"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Cards.CardActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.zikir.ui.ZikirUpdateActivity" />
+        <activity android:name=".ui.zikir.ui.zikir_ekle_activity" />
+        <activity android:name=".ui.zikir.ui.zikir_detay_activity" />
+        <activity android:name=".ui.zikir.ui.zikir_activity"></activity>
+        <activity android:name=".ui.activity.kaza_detay" />
+        <activity
+            android:name=".ui.activity.kabe_canli_activity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="fullSensor" />
+        <activity android:name=".ui.activity.kaza_hesapla_activity" />
+        <activity android:name=".ui.activity.EsmaulHusnaDetayActivity" />
+        <activity android:name=".ui.activity.esmaul_husna_activity" />
+        <activity android:name=".ui.activity.dini_days_detay_avtivity" />
+        <activity android:name=".ui.activity.dini_days_activity" />
+        <activity android:name=".ui.activity.takvim_yapragi_activity" />
+        <activity android:name=".ui.activity.MainActivity">
+
+        </activity>
+    </application>
+
+</manifest>

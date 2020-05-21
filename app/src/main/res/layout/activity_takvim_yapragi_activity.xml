@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.takvim_yapragi_activity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/takvim_yapragi_Toolbar"
+            style="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@drawable/as"
+            app:layout_scrollFlags="enterAlways">
+
+
+            <ImageView
+                android:id="@+id/Toolbar_back_iv"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_arrow_back" />
+
+
+            <TextView
+                android:id="@+id/Toolbar_title_tv"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="?android:attr/actionBarSize"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:text="EHLİBEYT"
+
+                />
+
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/takvim_yapragi_bg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/takvim_yapragi_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/takvim_yapragi_tarih_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="27dp"
+                    android:text="14 Mayıs 2020"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/takvim_yapragi_gün_tv"
+                    app:layout_constraintStart_toStartOf="@+id/takvim_yapragi_gün_tv"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/takvim_yapragi_gün_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PAZARTESİ"
+                    android:textColor="@android:color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/takvim_yapragi_hicri_tv"
+                    app:layout_constraintStart_toStartOf="@+id/takvim_yapragi_hicri_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/takvim_yapragi_tarih_tv" />
+
+
+                <TextView
+                    android:id="@+id/takvim_yapragi_hicri_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 Ramazan 1441"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white"
+                    android:textStyle="italic"
+
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/takvim_yapragi_gün_tv" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/takvim_yapragi_hicri_tv">
+
+                    <TextView
+                        android:id="@+id/imsak_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="İmsak"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/günes_tv"
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/imsak_tv"
+                        android:gravity="center"
+                        android:text="Güneş"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/ogle_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/günes_tv"
+                        android:gravity="center"
+                        android:text="Öğle"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/ikindi_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/ogle_tv"
+                        android:gravity="center"
+                        android:text="İkindi"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/aksam_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/ikindi_tv"
+                        android:gravity="center"
+                        android:text="Akşam"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/yatsi_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/aksam_tv"
+                        android:gravity="center"
+                        android:text="Yatsı"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/imsak_values_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imsak_tv"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:text="05:42"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/günes_values_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/günes_tv"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/imsak_values_tv"
+                        android:gravity="center"
+                        android:text="05:36"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/ogle_values_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ogle_tv"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toRightOf="@+id/günes_values_tv"
+                        android:gravity="center"
+                        android:text="05:36"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/ikindi_values_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ikindi_tv"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/ogle_values_tv"
+                        android:gravity="center"
+                        android:text="05:36"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/aksam_values_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/aksam_tv"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/ikindi_values_tv"
+                        android:gravity="center"
+                        android:text="05:36"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/yatsi_values_tv"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/yatsi_tv"
+                        android:layout_margin="4dp"
+                        android:layout_toRightOf="@+id/aksam_values_tv"
+                        android:gravity="center"
+                        android:text="05:36"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/takvim_yapragi_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="3dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
