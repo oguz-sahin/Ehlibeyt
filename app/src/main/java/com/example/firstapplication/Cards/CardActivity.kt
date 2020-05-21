@@ -30,10 +30,8 @@ class CardActivity : AppCompatActivity(), CardItemClickListener {
                 }
 
                 val rv = findViewById<RecyclerView>(R.id.card_rv)
-                val adapter = CardAdapter(this@CardActivity, CardArray, this@CardActivity)
-                val layoutManager = GridLayoutManager(this@CardActivity, 2)
-                rv.adapter = adapter
-                rv.layoutManager = layoutManager
+                rv.adapter = CardAdapter(this@CardActivity, CardArray, this@CardActivity)
+                rv.layoutManager = GridLayoutManager(this@CardActivity, 2)
 
 
             }
