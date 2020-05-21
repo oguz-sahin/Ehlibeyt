@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/slide"
+    android:id="@+id/vakit_fragment_container"
     tools:context=".ui.fragment.vakit_fragment">
 
     <TextView
