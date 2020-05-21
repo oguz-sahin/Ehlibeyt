@@ -2,6 +2,7 @@ package com.example.firstapplication.namazvaktiApi
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class VakitModelItem(
     @SerializedName("Aksam")
@@ -36,4 +37,4 @@ data class VakitModelItem(
     var ıkindi: String,
     @SerializedName("Imsak")
     var ımsak: String
-)
+): Serializable

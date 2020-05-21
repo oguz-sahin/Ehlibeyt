@@ -24,10 +24,9 @@ class FirstMenu : Fragment(), OnclickMenuItem {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view: View = inflater.inflate(R.layout.fragment_first_menu, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_first_menu, container, false)
 
-
-        var rv = view.findViewById<RecyclerView>(R.id.rvfirst)
+        val rv = view.findViewById<RecyclerView>(R.id.rvfirst)
         rv.layoutManager = GridLayoutManager(activity!!, 3)
         rv.adapter = context?.let {
             com.example.firstapplication.adapter.MenuAdapter(
@@ -42,7 +41,6 @@ class FirstMenu : Fragment(), OnclickMenuItem {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         menu = ArrayList<MenuModel>()
 

@@ -28,7 +28,8 @@
                 android:id="@+id/Toolbar_back_iv"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_arrow_back" />
+                android:src="@drawable/ic_arrow_back"
+                />
 
 
             <TextView
@@ -78,7 +79,6 @@
                     android:id="@+id/takvim_yapragi_tarih_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="27dp"
                     android:text="14 Mayıs 2020"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
