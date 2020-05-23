@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.dini_days_activity">
+    tools:context=".dinigunler.ui.dini_days_activity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dini_days_recyclerview"

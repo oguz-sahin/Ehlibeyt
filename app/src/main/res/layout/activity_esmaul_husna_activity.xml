@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.esmaul_husna_activity">
+    tools:context=".esmaulhusna.ui.esmaul_husna_activity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/esmaul_husna_rv"

@@ -5,7 +5,7 @@
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.zikir.ui.zikir_ekle_activity">
+    tools:context=".zikir.ui.zikir_ekle_activity">
 
 
     <com.google.android.material.appbar.AppBarLayout

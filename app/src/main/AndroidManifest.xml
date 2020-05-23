@@ -15,22 +15,22 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Cards.CardActivity">
         </activity>
-        <activity android:name=".ui.zikir.ui.ZikirUpdateActivity" />
-        <activity android:name=".ui.zikir.ui.zikir_ekle_activity" />
-        <activity android:name=".ui.zikir.ui.zikir_detay_activity" />
-        <activity android:name=".ui.zikir.ui.zikir_activity"></activity>
-        <activity android:name=".ui.activity.kaza_detay" />
+        <activity android:name="com.example.firstapplication.zikir.ui.ZikirUpdateActivity" />
+        <activity android:name="com.example.firstapplication.zikir.ui.zikir_ekle_activity" />
+        <activity android:name="com.example.firstapplication.zikir.ui.zikir_detay_activity" />
+        <activity android:name="com.example.firstapplication.zikir.ui.zikir_activity"></activity>
+        <activity android:name=".kazahesapla.ui.kaza_detay" />
         <activity
-            android:name=".ui.activity.kabe_canli_activity"
+            android:name=".kabecanli.kabe_canli_activity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="fullSensor" />
-        <activity android:name=".ui.activity.kaza_hesapla_activity" />
-        <activity android:name=".ui.activity.EsmaulHusnaDetayActivity" />
-        <activity android:name=".ui.activity.esmaul_husna_activity" />
-        <activity android:name=".ui.activity.dini_days_detay_avtivity" />
-        <activity android:name=".ui.activity.dini_days_activity" />
-        <activity android:name=".ui.activity.takvim_yapragi_activity" />
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".kazahesapla.ui.kaza_hesapla_activity" />
+        <activity android:name=".esmaulhusna.ui.EsmaulHusnaDetayActivity" />
+        <activity android:name=".esmaulhusna.ui.esmaul_husna_activity" />
+        <activity android:name=".dinigunler.ui.dini_days_detay_avtivity" />
+        <activity android:name=".dinigunler.ui.dini_days_activity" />
+        <activity android:name=".takvimyapragi.ui.takvim_yapragi_activity" />
+        <activity android:name="com.example.firstapplication.mainactivity.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
