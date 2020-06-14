@@ -14,22 +14,21 @@ import java.util.*
 
 class DiniGunAdapter(
     var context: Context,
-    var array: ArrayList<com.example.firstapplication.dinigunler.model.DiniGunModel>,
-    var onDiniDaysClickListener: onDiniDaysClickListener
+    private var array: ArrayList<com.example.firstapplication.dinigunler.model.DiniGunModel>,
+    private var onDiniDaysClickListener: onDiniDaysClickListener
 ) : RecyclerView.Adapter<DiniGunAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        var view = LayoutInflater.from(context).inflate(R.layout.item_dini_days, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_dini_days, parent, false)
         return ViewHolder(
             view
         )
-
-
     }
 
     override fun getItemCount(): Int = array.size
+
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -39,11 +38,14 @@ class DiniGunAdapter(
         val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
 
+
         month += 1
         Log.e(" month", month.toString())
         Log.e("day ", day.toString())
         Log.e("ayınt", array[position].ayInt.toString())
         Log.e("aygün", array[position].tarihInt.toString())
+
+
 
 
         if (array[position].ayInt < month) {
@@ -81,15 +83,11 @@ class DiniGunAdapter(
             holder.text_tv.setTextColor(context.getColor(android.R.color.holo_green_light))
             holder.text_tv.text = array[position].ozel_gun
 
-
         }
 
 
         holder.itemView.setOnClickListener {
-
-
             onDiniDaysClickListener.ondDiniDaysClick(array[position])
-
         }
 
 
@@ -100,7 +98,6 @@ class DiniGunAdapter(
         var tarih_tv = view.dini_day_tarih_tv as TextView
         var ay_tv = view.dini_day_ay_tv as TextView
         var text_tv = view.dini_day_tv as TextView
-
 
     }
 

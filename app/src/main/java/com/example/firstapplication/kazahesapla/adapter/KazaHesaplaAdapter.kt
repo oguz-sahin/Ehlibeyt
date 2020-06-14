@@ -37,18 +37,14 @@ class KazaHesaplaAdapter(
         holder.kaza_value_tv.text = array[position].kazaSayisi.toString()
 
         holder.itemView.setOnClickListener {
-
             OnkazaItemClickListener.kazaitemclick(array[position])
 
-
         }
-
 
     }
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
 
         var vakit_tv = view.item_vakit_tv as TextView
         var kaza_value_tv = view.item_kaza_sayisi_tv as TextView

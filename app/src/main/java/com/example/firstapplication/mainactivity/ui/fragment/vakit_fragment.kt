@@ -3,7 +3,6 @@ package com.example.firstapplication.mainactivity.ui.fragment
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +12,20 @@ import androidx.fragment.app.Fragment
 import com.example.firstapplication.R
 import com.example.firstapplication.mainactivity.namazvaktiApi.VakitApiClient
 import com.example.firstapplication.mainactivity.namazvaktiApi.VakitApiService
-import com.example.firstapplication.mainactivity.namazvaktiApi.VakitModel
 import com.example.firstapplication.mainactivity.namazvaktiApi.VakitModelItem
-import retrofit2.Call
-import retrofit2.Response
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.*
+import java.time.LocalDate
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 
 class vakit_fragment : Fragment() {
     val handler=Handler()
-    lateinit var  vakitModelItem:VakitModelItem
+    private lateinit var vakitModelItem: VakitModelItem
     private val ApiClientVakit: VakitApiService by lazy { VakitApiClient.getApiClient() }
+    private lateinit var job: Job
+    private lateinit var exceptionHandler: CoroutineExceptionHandler
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -32,67 +34,96 @@ class vakit_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_vakit_fragment, container, false)
+        exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            throwable.printStackTrace()
+        }
 
+        job = CoroutineScope(Dispatchers.IO).launch {
 
-     ApiClientVakit.getVakitWithQuery("9543").enqueue(object : retrofit2.Callback<VakitModel> {
-            override fun onFailure(call: Call<VakitModel>, t: Throwable) {
-               Log.e("hata responsu","api çekemdi")
-            }
+            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+            val formattedDate = LocalDate.now().format(formatter)
 
-            override fun onResponse(call: Call<VakitModel>, response: Response<VakitModel>) {
+            val response = ApiClientVakit.getVakitWithQuery(
+                "get",
+                formattedDate,
+                "İSTANBUL",
+                "TÜRKİYE",
+                "json"
+            )
 
-                vakitModelItem= response.body()!![0]
-                val imsak = vakitModelItem.ımsak
-                val gunes = vakitModelItem.gunes
-                val ogle = vakitModelItem.ogle
-                val ikindi =  vakitModelItem.ıkindi
-                val aksam = vakitModelItem.aksam
-                val yatsi =  vakitModelItem.yatsi
+            withContext(Dispatchers.Main + exceptionHandler) {
 
-                val imsakf = LocalTime.parse(imsak)
-                val gunesf = LocalTime.parse(gunes)
-                val oglef = LocalTime.parse(ogle)
-                val ikindif = LocalTime.parse(ikindi)
-                val aksamf = LocalTime.parse(aksam)
-                val yatsif = LocalTime.parse(yatsi)
+                if (!response.isSuccessful) {
+                    val builder = MaterialAlertDialogBuilder(context)
+                    builder.setMessage("İnternet Bağlantı Hatası")
+                        .setTitle("İnternet Bağlantınızı Kontrol ediniz")
+                        .setIcon(R.drawable.ic_refresh_black_24dp).background =
+                        resources.getDrawable(R.drawable.alert_shape, null)
+                    val dialog = builder.create()
+                    dialog.show()
 
-                val currentTime=LocalTime.now()
-                val textView=view.findViewById<TextView>(R.id.textView)
-                handler.post(object : Runnable {
-                    @RequiresApi(Build.VERSION_CODES.O)
-                    override fun run() {
+                }
+                if (response.isSuccessful) {
 
+                    val textView = view.findViewById<TextView>(R.id.textView)
+                    handler.post(object : Runnable {
+                        @RequiresApi(Build.VERSION_CODES.O)
+                        override fun run() {
+                            val currentTime = LocalTime.now()
+                            vakitModelItem = response.body()!!
+                            val imsak = vakitModelItem.ımsak
+                            val gunes = vakitModelItem.gunes
+                            val ogle = vakitModelItem.oglen
+                            val ikindi = vakitModelItem.ıkindi
+                            val aksam = vakitModelItem.aksam
+                            val yatsi = vakitModelItem.yatsi
 
-                        if (yatsif.isBefore(currentTime) ) {
-                            textView.text= KalanVakit(imsakf)
+                            val imsakf = LocalTime.parse(imsak)
+                            val gunesf = LocalTime.parse(gunes)
+                            val oglef = LocalTime.parse(ogle)
+                            val ikindif = LocalTime.parse(ikindi)
+                            val aksamf = LocalTime.parse(aksam)
+                            val yatsif = LocalTime.parse(yatsi)
 
-                        } else if (imsakf.isBefore(currentTime) && gunesf.isAfter(currentTime)) {
-                            textView.text= KalanVakit(gunesf)
+                            if (yatsif.isBefore(currentTime)) {
+                                textView.text = kalanVakit(imsakf)
 
-                        } else if (gunesf.isBefore(currentTime) && oglef.isAfter(currentTime)) {
-                            textView.text= KalanVakit(oglef)
+                            } else if (imsakf.isBefore(currentTime) && gunesf.isAfter(currentTime)) {
+                                textView.text = kalanVakit(gunesf)
 
-                        } else if (oglef.isBefore(currentTime) && ikindif.isAfter(currentTime)) {
-                            textView.text= KalanVakit(ikindif)
+                            } else if (gunesf.isBefore(currentTime) && oglef.isAfter(currentTime)) {
+                                textView.text = kalanVakit(oglef)
 
-                        } else if (ikindif.isBefore(currentTime) && aksamf.isAfter(currentTime)) {
-                            textView.text= KalanVakit(aksamf)
-                        } else if (aksamf.isBefore(currentTime) && yatsif.isAfter(currentTime)) {
-                            textView.text= KalanVakit(yatsif)
+                            } else if (oglef.isBefore(currentTime) && ikindif.isAfter(currentTime)) {
+                                textView.text = kalanVakit(ikindif)
+
+                            } else if (ikindif.isBefore(currentTime) && aksamf.isAfter(currentTime)) {
+                                textView.text = kalanVakit(aksamf)
+                            } else if (aksamf.isBefore(currentTime) && yatsif.isAfter(currentTime)) {
+                                textView.text = kalanVakit(yatsif)
+
+                            } else if (currentTime.isBefore(imsakf)) {
+                                textView.text = kalanVakit(imsakf)
+                            }
+
+                            handler.postDelayed(this, 100)
 
                         }
+                    })
 
-                        handler.postDelayed(this, 100)
+                }
 
-                    }
-                })
+
             }
 
-
-        })
-
+        }
 
         return view
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        job.cancel()
     }
 
 }
@@ -100,7 +131,7 @@ class vakit_fragment : Fragment() {
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun KalanVakit(time: LocalTime): String {
+fun kalanVakit(time: LocalTime): String {
 
     val current = LocalTime.now()
     val second = time.minusSeconds(current.second.toLong()).second

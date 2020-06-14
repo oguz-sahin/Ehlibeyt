@@ -16,13 +16,13 @@ class arapcaFragment(var zikir: Zikir) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_arapca, container, false)
+        val view = inflater.inflate(R.layout.fragment_arapca, container, false)
 
         if (zikir.arapca_okunusu.isNullOrEmpty()) {
             zikir.arapca_okunusu = ""
         }
 
-        var arapcatv = view.findViewById<TextView>(R.id.arapca_tv)
+        val arapcatv = view.findViewById<TextView>(R.id.arapca_tv)
         arapcatv.text = zikir.arapca_okunusu
 
         return view

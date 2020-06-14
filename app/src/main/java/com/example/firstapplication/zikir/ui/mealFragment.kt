@@ -17,21 +17,15 @@ class mealFragment(var zikir: Zikir) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_meal, container, false)
+        val view = inflater.inflate(R.layout.fragment_meal, container, false)
 
-        var mealtv = view.findViewById<TextView>(R.id.meal_tv)
+        val mealtv = view.findViewById<TextView>(R.id.meal_tv)
 
         if (zikir.meal.isNullOrEmpty()) {
             zikir.meal = ""
-
-
         }
 
-
         mealtv.text = zikir.meal
-
-
-
 
         return view
     }

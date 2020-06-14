@@ -2,6 +2,7 @@ package com.example.firstapplication.dinigunler.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,19 +15,23 @@ import java.util.*
 class dini_days_activity : AppCompatActivity(),
     onDiniDaysClickListener {
 
-
-    var dini_days_array = ArrayList<DiniGunModel>()
-
+    private var dini_days_array = ArrayList<DiniGunModel>()
+    private var a: DiniGunModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dini_days_activity)
 
-        add_diniGun()
 
+        add_diniGun()
+        enYakınGün()
+        val position = dini_days_array.indexOf(a)
         val rv = findViewById<RecyclerView>(R.id.dini_days_recyclerview)
 
-        rv.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        rv.layoutManager = layoutManager
+        layoutManager.scrollToPosition(position + 1)
+
 
         rv.adapter =
             DiniGunAdapter(
@@ -40,8 +45,6 @@ class dini_days_activity : AppCompatActivity(),
 
 
     private fun add_diniGun() {
-
-
         dini_days_array.add(DiniGunModel("25", 2, "Şubat", 2, "Üç Ayların Başlangıcı"))
         dini_days_array.add(DiniGunModel("27", 27, "Şubat", 2, "Regaib Kandili"))
         dini_days_array.add(DiniGunModel("21", 21, "Mart", 3, "Miraç Kanidili"))
@@ -63,12 +66,40 @@ class dini_days_activity : AppCompatActivity(),
 
     }
 
+    private fun enYakınGün() {
+        var temp = 12
+        var temp2 = 31
+        val month = Calendar.getInstance().get(Calendar.MONTH) + 1
+        Log.e("ay", month.toString())
+        val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
-    override fun ondDiniDaysClick(Dinidays: DiniGunModel) {
+        for (i in 0.until(dini_days_array.size)) {
+
+            if (dini_days_array[i].ayInt >= month) {
+                if (dini_days_array[i].tarihInt >= day) {
+                    val ayFark = dini_days_array[i].ayInt - month
+                    if (temp > ayFark) {
+                        temp = ayFark
+                        val gunFark = dini_days_array[i].tarihInt - day
+                        if (temp2 > gunFark) {
+                            temp2 = gunFark
+                            a = dini_days_array[i]
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+
+    override fun ondDiniDaysClick(DiniDays: DiniGunModel) {
         val intent = Intent(this, dini_days_detay_avtivity::class.java)
         intent.putExtra(
             "diniGün",
-            "${Dinidays.ozel_gun} texti"
+            "${DiniDays.ozel_gun} texti"
         )
         startActivity(intent)
     }
